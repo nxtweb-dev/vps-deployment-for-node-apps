@@ -3,6 +3,7 @@
 #checks versions
 node -v
 npm -v
+pm2 -v
 
 #both app folders start with 'next-app'
 LIVE_DIR_PATH=/var/www/html/next-app
@@ -59,6 +60,10 @@ echo "Deploying to dir: $DEPLOYING_TO_DIR"
 cd $DEPLOYING_TO_DIR || { echo 'Could not access deployment directory.' ; exit 1; }
 
 # use the correct node version
+# Load nvm
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+
 nvm use || { echo 'Could not switch to node version' ; exit 1; }
 
 # load the .env file
